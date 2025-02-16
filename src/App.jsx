@@ -7,6 +7,7 @@ import AppLayout from "./pages/AppLayout";
 import PageNotFound from "./pages/PageNotFound";
 import { useEffect, useState } from "react";
 import CityList from "./components/CityList";
+import CountryList from "./components/CountryList";
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -29,8 +30,9 @@ function App() {
 
     fetchCities();
   }, []);
+
   function handleDelete(cityId) {
-    setCities((city) => city.filter((id) => id != cityId));
+    setCities((prevCities) => prevCities.filter((city) => city.id !== cityId));
 }
 
 
@@ -42,9 +44,9 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="login" element={<Login />} />
         <Route path="app" element={<AppLayout />}>
-        <Route index element={<CityList cities={cities} loading={loading} onHandleDelete={handleDelete} />} />
+          <Route index element={<CityList cities={cities} loading={loading} onHandleDelete={handleDelete} />} />
           <Route path="cities" element={<CityList cities={cities} loading={loading} onHandleDelete={handleDelete} /> } />
-          <Route path="countries" element={<p>countries</p>} />
+          <Route path="countries" element={<CountryList cities={cities} loading={loading} onHandleDelete={handleDelete} />} />
           <Route path="form" element={<p>form</p>} />
         </Route>
         <Route path="*" element={<PageNotFound />} />

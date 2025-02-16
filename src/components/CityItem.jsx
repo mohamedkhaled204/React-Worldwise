@@ -1,12 +1,8 @@
 import styles from "./CityItem.module.css";
 
 function CityItem({ city, onHandleDelete }) {
-    function deleteItem(id) {
-        onHandleDelete(id);
-    }
-
-    const { emoji, cityName, date, iditem } = city;
-    console.log(city);
+    const { emoji, cityName, date, id } = city; 
+    console.log(city)
 
     const formatDate = (date) =>
         new Intl.DateTimeFormat("en", {
@@ -20,7 +16,7 @@ function CityItem({ city, onHandleDelete }) {
             <span className={styles.emoji}>{emoji}</span>
             <h3 className={styles.name}>{cityName}</h3>
             <time className={styles.date}>({formatDate(date)})</time>
-            <button onClick={() => deleteItem(iditem)} className={styles.deleteBtn}>
+            <button onClick={() => onHandleDelete(id)} className={styles.deleteBtn}>
                 x
             </button>
         </li>
