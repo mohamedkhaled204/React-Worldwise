@@ -8,6 +8,9 @@ import PageNotFound from "./pages/PageNotFound";
 import { useEffect, useState } from "react";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
+import City from "./components/City";
+import Form from "./components/Form";
+
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -46,8 +49,9 @@ function App() {
         <Route path="app" element={<AppLayout />}>
           <Route index element={<CityList cities={cities} loading={loading} onHandleDelete={handleDelete} />} />
           <Route path="cities" element={<CityList cities={cities} loading={loading} onHandleDelete={handleDelete} /> } />
+          <Route path="cities/:id" element={<City />} />
           <Route path="countries" element={<CountryList cities={cities} loading={loading} onHandleDelete={handleDelete} />} />
-          <Route path="form" element={<p>form</p>} />
+          <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
